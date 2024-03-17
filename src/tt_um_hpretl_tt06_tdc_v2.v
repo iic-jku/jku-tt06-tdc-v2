@@ -22,7 +22,8 @@ module tt_um_hpretl_tt06_tdc_v2 (
     input  wire       rst_n     // Async to clk
 );
 
-  localparam N_DELAY = 192;
+  localparam N_DELAY = 64;
+  localparam N_CTR = 16;
 
   // All output pins must be assigned. If not used, assign to 0.
   assign uio_out[7:0] = 8'b0;
@@ -35,7 +36,8 @@ module tt_um_hpretl_tt06_tdc_v2 (
   wire dummy4 = rst_n;
   /* verilator lint_on UNUSED */
 
-  wire [N_DELAY-1:0] result;
+  wire [N_DELAY-1:0] result_ring;
+  wire [N_CTR-1:0] result_ctr;
   wire start = ui_in[0];
   wire stop = clk;
 
@@ -43,22 +45,27 @@ module tt_um_hpretl_tt06_tdc_v2 (
   // to the limited 8b; up to 256 delay stages are supported
 
   wire [4:0] out_sel = ui_in[7:3];
-  wire [7:0] res_sel[0:(N_DELAY/8)-1];
+  wire [7:0] res_sel[0:(N_DELAY/8)+(N_CTR/8)-1];
   assign uo_out = res_sel[out_sel];
 
   genvar i;
   generate
-    for (i=0; i<(N_DELAY/8); i=i+1) begin : g_out_sel
-      assign res_sel[i] = result[(i+1)*8-1:i*8];
+    for (i=0; i<(N_DELAY/8); i=i+1) begin : g_out_sel1
+      assign res_sel[i] = result_ring[(i+1)*8-1:i*8];
+    end
+
+    for (i=0; i<(N_CTR/8); i=i+1) begin : g_out_sel2
+      assign res_sel[i+(N_DELAY/8)] = result_ctr[(i+1)*8-1:i*8];
     end
   endgenerate
 
   // instantiate the actual design into the TT harness
 
-  tdc_ring #(.N_DELAY(N_DELAY)) tdc0 (
+  tdc_ring #(.N_DELAY(N_DELAY), .N_CTR(N_CTR)) tdc0 (
     .i_start(start),
     .i_stop(stop),
-    .o_result(result)
+    .o_result_ring(result_ring),
+    .o_result_ctr(result_ctr)
   );
 
 endmodule // tt_um_hpretl_tt06_tdc_v2
