@@ -64,7 +64,11 @@ localparam N_STOP_DEL = 8;
     genvar i;
     generate
         for (i=0; i<N_START_DEL; i=i+1) begin : g_dly_strt
+`ifdef SIM
+            assign w_dly_strt[i+1] = ~w_dly_strt[i];
+`else
             (* keep = "true" *) sky130_fd_sc_hd__inv_1 dly_strt (.A(w_dly_strt[i]),.Y(w_dly_strt[i+1]));
+`endif
         end
     endgenerate
 
@@ -83,7 +87,11 @@ localparam N_STOP_DEL = 8;
     
     generate
         for (i=0; i<N_STOP_DEL; i=i+1) begin : g_dly_stp
+`ifdef SIM
+            assign w_dly_stop[i+1] = ~w_dly_stop[i];
+`else
             (* keep = "true" *) sky130_fd_sc_hd__inv_1 dly_stp (.A(w_dly_stop[i]),.Y(w_dly_stop[i+1]));
+`endif
         end
     endgenerate
     
@@ -97,7 +105,8 @@ localparam N_STOP_DEL = 8;
     (* keep = "true" *) wire [N_DELAY-1:0] w_dly_sig;
     (* keep = "true" *) wire [N_DELAY-1:0] w_dly_sig_n;
     /* verilator lint_on MULTIDRIVEN */
-    
+
+`ifndef SIM 
     // instantiate first stage 0 (different because using a NOR)
     // on the NOR, input A is the fast one
     (* keep = "true" *) sky130_fd_sc_hd__nor2_1 dly_stg1 (.A(w_dly_sig[0]), .B(w_strt_pulse), .Y(w_dly_sig_n[0]));
@@ -135,7 +144,7 @@ localparam N_STOP_DEL = 8;
        /* verilator lint_on MULTIDRIVEN */
 `endif
     endgenerate
-
+`endif
 
     // GENERATION OF RING COUNTER
     // --------------------------
