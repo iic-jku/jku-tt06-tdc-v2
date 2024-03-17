@@ -9,9 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-This is a simple synthesized time-to-digital converter (TDC), consisting of a delay line and parallel capture FF. Depending on `__TDC_INTERLEAVED__` either a simple or an interleaved delay line is implemented.
-
-In the TT 1x1 block size a 192-stage interleaved delay can be fitted.
+This is a simple synthesized time-to-digital converter (TDC), consisting of a delay line ring and parallel capture FF. Depending on `__TDC_INTERLEAVED__` either a simple or an interleaved delay line is implemented.
 
 ## How to test
 

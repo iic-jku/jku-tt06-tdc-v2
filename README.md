@@ -4,7 +4,7 @@
 
 ## Copyright 2024 by Harald Pretl, Institute for Integrated Circuits, Johannes Kepler University, Linz, Austria
 
-A TDC is implemented in Verilog and synthesized, with a configurable delay length, and based on an interleaved inverter chain.
+A TDC is implemented in Verilog and synthesized, with a configurable delay length, and based on an interleaved inverter ring.
 
 The result of the delay line capture is output directly, without any bubble correction or coding.
 
