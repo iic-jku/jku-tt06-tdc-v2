@@ -14,12 +14,6 @@
 
     The result of the capture is given out via <o_result_ctr> and 
     <o_result_ring>.
-
-    When __TDC_INTERLEAVED__ is defined than an interlaved delay line
-    is implemented.
-
-    ISSUE: Non-interleaved works fine in simulation, interleaved does
-           start a proper pulse into the ring.
 */
 
 `ifndef __TDC_RING__
@@ -50,9 +44,8 @@ module tdc_ring #(parameter N_DELAY = 16, parameter N_CTR = 3) (
 `endif
 );
 
-`define __TDC_INTERLEAVED__
-localparam N_START_DEL = 2*2; // even number
-localparam N_STOP_DEL = 2*2; // even number
+localparam N_START_DEL = 3;
+localparam N_STOP_DEL = 3;
 
     // GENERATION OF START PULSE
     // -------------------------
@@ -70,12 +63,12 @@ localparam N_STOP_DEL = 2*2; // even number
 `ifdef SIM
             assign w_dly_strt_ana_[i+1] = ~w_dly_strt_ana_[i];
 `else
-            (* keep *) sky130_fd_sc_hd__inv_1 inv_chain (.A(w_dly_strt_ana_[i]),.Y(w_dly_strt_ana_[i+1]));
+            (* keep *) sky130_fd_sc_hd__buf_1 buf_chain (.A(w_dly_strt_ana_[i]), .X(w_dly_strt_ana_[i+1]));
 `endif
         end
     endgenerate
 
-    assign w_strt_pulse = i_start & w_dly_strt_ana_[N_START_DEL];
+    assign w_strt_pulse = i_start & ~w_dly_strt_ana_[N_START_DEL];
 
 
     // GENERATION OF DELAYED STOP SIGNAL
@@ -93,7 +86,7 @@ localparam N_STOP_DEL = 2*2; // even number
 `ifdef SIM
             assign w_dly_stop_ana_[i+1] = ~w_dly_stop_ana_[i];
 `else
-            (* keep *) sky130_fd_sc_hd__inv_1 dly_stp (.A(w_dly_stop_ana_[i]),.Y(w_dly_stop_ana_[i+1]));
+            (* keep *) sky130_fd_sc_hd__buf_1 dly_stp (.A(w_dly_stop_ana_[i]), .X(w_dly_stop_ana_[i+1]));
 `endif
         end
     endgenerate
@@ -112,7 +105,7 @@ localparam N_STOP_DEL = 2*2; // even number
 `ifndef SIM 
     // instantiate first stage 0 (different because using a NOR)
     // on the NOR, input A is the fast one
-    (* keep *) sky130_fd_sc_hd__nor2_1 dly_stg1 (.A(w_dly_sig_ana_[0]), .B(w_strt_pulse), .Y(w_dly_sig_n_ana_[0]));
+    (* keep *) sky130_fd_sc_hd__nor2_2 dly_stg1 (.A(w_dly_sig_ana_[0]), .B(w_strt_pulse), .Y(w_dly_sig_n_ana_[0]));
     (* keep *) sky130_fd_sc_hd__inv_2 dly_stg2 (.A(w_dly_sig_n_ana_[0]), .Y(w_dly_sig_ana_[1]));
 
     // generating the middle part of the ring, stage 1 to N_DELAY-2
@@ -120,32 +113,13 @@ localparam N_STOP_DEL = 2*2; // even number
         for (i=1; i<N_DELAY-1; i=i+1) begin : g_dly_chain
         // on the NAND, input B is the fast one
             (* keep *) sky130_fd_sc_hd__nand2_1 dly_stg3 (.B(w_dly_sig_ana_[i]), .A(w_dly_stop_n), .Y(w_dly_sig_n_ana_[i]));
-            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg4 (.A(w_dly_sig_n_ana_[i]),.Y(w_dly_sig_ana_[i+1]));
+            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg4 (.A(w_dly_sig_n_ana_[i]), .Y(w_dly_sig_ana_[i+1]));
         end
 
     // instantiate the last stage N_DELAY-1
     (* keep *) sky130_fd_sc_hd__nand2_1 dly_stg5 (.B(w_dly_sig_ana_[N_DELAY-1]), .A(w_dly_stop_n), .Y(w_dly_sig_n_ana_[N_DELAY-1]));
-    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg6 (.A(w_dly_sig_n_ana_[N_DELAY-1]),.Y(w_dly_sig_ana_[0])); 
+    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg6 (.A(w_dly_sig_n_ana_[N_DELAY-1]), .Y(w_dly_sig_ana_[0])); 
 
-`ifdef __TDC_INTERLEAVED__
-        // use an interlaved delay line to increase time resolution
-
-       /* verilator lint_off MULTIDRIVEN */
-        for (i=0; i<N_DELAY-2; i=i+1) begin : g_dly_chain_interleave
-            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg7 (.A(w_dly_sig_ana_[i]),.Y(w_dly_sig_n_ana_[i+1]));
-            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg8 (.A(w_dly_sig_n_ana_[i]),.Y(w_dly_sig_ana_[i+2]));
-        end
-
-        // stage N_DELAY-2
-        (* keep *) sky130_fd_sc_hd__inv_2 dly_stg9 (.A(w_dly_sig_ana_[N_DELAY-2]),.Y(w_dly_sig_n_ana_[N_DELAY-1]));
-        (* keep *) sky130_fd_sc_hd__inv_2 dly_stg10 (.A(w_dly_sig_n_ana_[N_DELAY-2]),.Y(w_dly_sig_ana_[0]));
-
-        // stage N_DELAY-1
-        (* keep *) sky130_fd_sc_hd__inv_2 dly_stg11 (.A(w_dly_sig_ana_[N_DELAY-1]),.Y(w_dly_sig_n_ana_[0]));
-        (* keep *) sky130_fd_sc_hd__inv_2 dly_stg12 (.A(w_dly_sig_n_ana_[N_DELAY-1]),.Y(w_dly_sig_ana_[1]));
-
-       /* verilator lint_on MULTIDRIVEN */
-`endif
     endgenerate
 `endif
 
