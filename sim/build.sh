@@ -8,8 +8,8 @@ MODULE=tdc_ring
 [ -f $MODULE.mag ] && rm $MODULE.mag
 [ -f $MODULE.pex.spice ] && rm $MODULE.pex.spice
 
-# Copy user_config.tcl into proper folder
-cp -f user_config.tcl ../src
+# Copy correct user_config.tcl into src folder
+cp -f user_config_$MODULE.tcl ../src/user_config.tcl
 
 # Run OpenLane flow to build layout
 flow.tcl -design ../src -tag foo -overwrite

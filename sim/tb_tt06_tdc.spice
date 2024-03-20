@@ -1,57 +1,9 @@
 ** sch_path: /foss/designs/sim/tb_tt06_tdc.sch
 **.subckt tb_tt06_tdc
-VDAC start GND 0 pwl(0 0 500n 0 500.1n 1.8)
+VSTART start GND 0 pwl(0 0 500n 0 500.1n 1.8)
 .save v(start)
-VDAC1 stop GND 0 pwl(0 0 508n 0 508.1n 1.8)
+VSTOP stop GND 0 pwl(0 0 100n 1.8 200n 1.8 200.1n 0 508n 0 508.1n 1.8)
 .save v(stop)
-Cload1[63] res_ring[63] GND 10f m=1
-Cload1[62] res_ring[62] GND 10f m=1
-Cload1[61] res_ring[61] GND 10f m=1
-Cload1[60] res_ring[60] GND 10f m=1
-Cload1[59] res_ring[59] GND 10f m=1
-Cload1[58] res_ring[58] GND 10f m=1
-Cload1[57] res_ring[57] GND 10f m=1
-Cload1[56] res_ring[56] GND 10f m=1
-Cload1[55] res_ring[55] GND 10f m=1
-Cload1[54] res_ring[54] GND 10f m=1
-Cload1[53] res_ring[53] GND 10f m=1
-Cload1[52] res_ring[52] GND 10f m=1
-Cload1[51] res_ring[51] GND 10f m=1
-Cload1[50] res_ring[50] GND 10f m=1
-Cload1[49] res_ring[49] GND 10f m=1
-Cload1[48] res_ring[48] GND 10f m=1
-Cload1[47] res_ring[47] GND 10f m=1
-Cload1[46] res_ring[46] GND 10f m=1
-Cload1[45] res_ring[45] GND 10f m=1
-Cload1[44] res_ring[44] GND 10f m=1
-Cload1[43] res_ring[43] GND 10f m=1
-Cload1[42] res_ring[42] GND 10f m=1
-Cload1[41] res_ring[41] GND 10f m=1
-Cload1[40] res_ring[40] GND 10f m=1
-Cload1[39] res_ring[39] GND 10f m=1
-Cload1[38] res_ring[38] GND 10f m=1
-Cload1[37] res_ring[37] GND 10f m=1
-Cload1[36] res_ring[36] GND 10f m=1
-Cload1[35] res_ring[35] GND 10f m=1
-Cload1[34] res_ring[34] GND 10f m=1
-Cload1[33] res_ring[33] GND 10f m=1
-Cload1[32] res_ring[32] GND 10f m=1
-Cload1[31] res_ring[31] GND 10f m=1
-Cload1[30] res_ring[30] GND 10f m=1
-Cload1[29] res_ring[29] GND 10f m=1
-Cload1[28] res_ring[28] GND 10f m=1
-Cload1[27] res_ring[27] GND 10f m=1
-Cload1[26] res_ring[26] GND 10f m=1
-Cload1[25] res_ring[25] GND 10f m=1
-Cload1[24] res_ring[24] GND 10f m=1
-Cload1[23] res_ring[23] GND 10f m=1
-Cload1[22] res_ring[22] GND 10f m=1
-Cload1[21] res_ring[21] GND 10f m=1
-Cload1[20] res_ring[20] GND 10f m=1
-Cload1[19] res_ring[19] GND 10f m=1
-Cload1[18] res_ring[18] GND 10f m=1
-Cload1[17] res_ring[17] GND 10f m=1
-Cload1[16] res_ring[16] GND 10f m=1
 Cload1[15] res_ring[15] GND 10f m=1
 Cload1[14] res_ring[14] GND 10f m=1
 Cload1[13] res_ring[13] GND 10f m=1
@@ -68,54 +20,6 @@ Cload1[3] res_ring[3] GND 10f m=1
 Cload1[2] res_ring[2] GND 10f m=1
 Cload1[1] res_ring[1] GND 10f m=1
 Cload1[0] res_ring[0] GND 10f m=1
-.save v(res_ring[63])
-.save v(res_ring[62])
-.save v(res_ring[61])
-.save v(res_ring[60])
-.save v(res_ring[59])
-.save v(res_ring[58])
-.save v(res_ring[57])
-.save v(res_ring[56])
-.save v(res_ring[55])
-.save v(res_ring[54])
-.save v(res_ring[53])
-.save v(res_ring[52])
-.save v(res_ring[51])
-.save v(res_ring[50])
-.save v(res_ring[49])
-.save v(res_ring[48])
-.save v(res_ring[47])
-.save v(res_ring[46])
-.save v(res_ring[45])
-.save v(res_ring[44])
-.save v(res_ring[43])
-.save v(res_ring[42])
-.save v(res_ring[41])
-.save v(res_ring[40])
-.save v(res_ring[39])
-.save v(res_ring[38])
-.save v(res_ring[37])
-.save v(res_ring[36])
-.save v(res_ring[35])
-.save v(res_ring[34])
-.save v(res_ring[33])
-.save v(res_ring[32])
-.save v(res_ring[31])
-.save v(res_ring[30])
-.save v(res_ring[29])
-.save v(res_ring[28])
-.save v(res_ring[27])
-.save v(res_ring[26])
-.save v(res_ring[25])
-.save v(res_ring[24])
-.save v(res_ring[23])
-.save v(res_ring[22])
-.save v(res_ring[21])
-.save v(res_ring[20])
-.save v(res_ring[19])
-.save v(res_ring[18])
-.save v(res_ring[17])
-.save v(res_ring[16])
 .save v(res_ring[15])
 .save v(res_ring[14])
 .save v(res_ring[13])
@@ -134,92 +38,19 @@ Cload1[0] res_ring[0] GND 10f m=1
 .save v(res_ring[0])
 .save v(vdd)
 VDAC2 VDD GND 0 pwl(0 0 100n 1.8)
-Cload2[7] res_ctr[7] GND 10f m=1
-Cload2[6] res_ctr[6] GND 10f m=1
-Cload2[5] res_ctr[5] GND 10f m=1
-Cload2[4] res_ctr[4] GND 10f m=1
-Cload2[3] res_ctr[3] GND 10f m=1
 Cload2[2] res_ctr[2] GND 10f m=1
 Cload2[1] res_ctr[1] GND 10f m=1
 Cload2[0] res_ctr[0] GND 10f m=1
-.save v(res_ctr[7])
-.save v(res_ctr[6])
-.save v(res_ctr[5])
-.save v(res_ctr[4])
-.save v(res_ctr[3])
 .save v(res_ctr[2])
 .save v(res_ctr[1])
 .save v(res_ctr[0])
-x1 dbg_stop dbg_dly[17] dbg_dly[1] dbg_dly[20] dbg_dly[22] dbg_dly[23] dbg_dly[25] dbg_dly[27] dbg_dly[28] dbg_dly[29] dbg_dly[2]
-+ dbg_dly[31] dbg_dly[34] dbg_dly[36] dbg_dly[39] dbg_dly[3] dbg_dly[41] dbg_dly[42] dbg_dly[43] dbg_dly[44] dbg_dly[45] dbg_dly[46] dbg_dly[4]
-+ dbg_dly[50] dbg_dly[53] dbg_dly[55] dbg_dly[57] dbg_dly[58] dbg_dly[5] dbg_dly[60] dbg_dly[61] dbg_dly[62] dbg_dly[63] dbg_dly[6] dbg_dly[7]
-+ dbg_dly[8] dbg_dly[9] dbg_ctr[1] dbg_ctr[2] start stop res_ctr[2] res_ctr[4] res_ctr[6] res_ctr[7] res_ring[10] res_ring[11] res_ring[13]
-+ res_ring[14] res_ring[16] res_ring[18] res_ring[19] res_ring[22] res_ring[25] res_ring[27] res_ring[30] res_ring[32] res_ring[33] res_ring[34]
-+ res_ring[35] res_ring[36] res_ring[37] res_ring[38] res_ring[3] res_ring[44] res_ring[49] res_ring[51] res_ring[52] res_ring[54] res_ring[55]
-+ res_ring[56] res_ring[57] res_ring[58] res_ring[60] res_ring[63] res_ring[6] res_ring[8] res_ring[0] dbg_dly[47] res_ring[41] dbg_dly[12]
-+ res_ring[24] res_ring[29] res_ring[21] res_ring[5] res_ring[2] res_ring[7] dbg_dly[52] res_ctr[1] dbg_dly[49] dbg_start res_ring[62]
-+ res_ctr[3] dbg_dly[33] res_ring[59] dbg_dly[38] res_ring[46] dbg_dly[30] dbg_dly[35] res_ring[43] res_ring[48] dbg_dly[14] res_ring[40]
-+ dbg_dly[19] dbg_dly[11] dbg_dly[16] dbg_dly[0] res_ring[26] res_ring[31] res_ring[23] res_ring[28] res_ring[15] res_ring[20] res_ring[12]
-+ res_ring[17] res_ring[4] res_ring[9] res_ring[1] dbg_dly[54] dbg_dly[59] dbg_dly[51] dbg_dly[56] res_ctr[0] res_ctr[5] dbg_dly[48]
-+ res_ring[61] dbg_dly[40] dbg_ctr[6] res_ring[53] dbg_dly[32] dbg_dly[37] dbg_ctr[5] dbg_ctr[3] res_ring[45] dbg_dly[24] res_ring[50]
-+ res_ring[42] dbg_dly[21] res_ring[47] dbg_dly[26] dbg_dly[13] dbg_ctr[0] res_ring[39] dbg_dly[18] dbg_ctr[4] dbg_ctr[7] dbg_dly[10]
-+ dbg_dly[15] GND VDD tdc_ring
-Cload3[7] dbg_ctr[7] GND 0.1f m=1
-Cload3[6] dbg_ctr[6] GND 0.1f m=1
-Cload3[5] dbg_ctr[5] GND 0.1f m=1
-Cload3[4] dbg_ctr[4] GND 0.1f m=1
-Cload3[3] dbg_ctr[3] GND 0.1f m=1
+x1 dbg_stop dbg_dly[0] dbg_dly[11] dbg_dly[13] dbg_dly[2] dbg_dly[4] dbg_dly[5] dbg_dly[6] dbg_dly[7] dbg_dly[8] dbg_dly[9]
++ dbg_ctr[0] dbg_ctr[1] dbg_ctr[2] start stop res_ctr[0] res_ctr[2] res_ring[0] res_ring[10] res_ring[12] res_ring[13] res_ring[14]
++ res_ring[15] res_ring[2] res_ring[5] res_ring[8] res_ring[7] res_ring[4] res_ring[1] dbg_dly[10] dbg_dly[15] res_ring[9] res_ring[6]
++ res_ring[11] res_ctr[1] res_ring[3] dbg_dly[12] dbg_dly[14] dbg_dly[1] dbg_dly[3] dbg_start VDD GND tdc_ring
 Cload3[2] dbg_ctr[2] GND 0.1f m=1
 Cload3[1] dbg_ctr[1] GND 0.1f m=1
 Cload3[0] dbg_ctr[0] GND 0.1f m=1
-Cload4[63] dbg_dly[63] GND 0.1f m=1
-Cload4[62] dbg_dly[62] GND 0.1f m=1
-Cload4[61] dbg_dly[61] GND 0.1f m=1
-Cload4[60] dbg_dly[60] GND 0.1f m=1
-Cload4[59] dbg_dly[59] GND 0.1f m=1
-Cload4[58] dbg_dly[58] GND 0.1f m=1
-Cload4[57] dbg_dly[57] GND 0.1f m=1
-Cload4[56] dbg_dly[56] GND 0.1f m=1
-Cload4[55] dbg_dly[55] GND 0.1f m=1
-Cload4[54] dbg_dly[54] GND 0.1f m=1
-Cload4[53] dbg_dly[53] GND 0.1f m=1
-Cload4[52] dbg_dly[52] GND 0.1f m=1
-Cload4[51] dbg_dly[51] GND 0.1f m=1
-Cload4[50] dbg_dly[50] GND 0.1f m=1
-Cload4[49] dbg_dly[49] GND 0.1f m=1
-Cload4[48] dbg_dly[48] GND 0.1f m=1
-Cload4[47] dbg_dly[47] GND 0.1f m=1
-Cload4[46] dbg_dly[46] GND 0.1f m=1
-Cload4[45] dbg_dly[45] GND 0.1f m=1
-Cload4[44] dbg_dly[44] GND 0.1f m=1
-Cload4[43] dbg_dly[43] GND 0.1f m=1
-Cload4[42] dbg_dly[42] GND 0.1f m=1
-Cload4[41] dbg_dly[41] GND 0.1f m=1
-Cload4[40] dbg_dly[40] GND 0.1f m=1
-Cload4[39] dbg_dly[39] GND 0.1f m=1
-Cload4[38] dbg_dly[38] GND 0.1f m=1
-Cload4[37] dbg_dly[37] GND 0.1f m=1
-Cload4[36] dbg_dly[36] GND 0.1f m=1
-Cload4[35] dbg_dly[35] GND 0.1f m=1
-Cload4[34] dbg_dly[34] GND 0.1f m=1
-Cload4[33] dbg_dly[33] GND 0.1f m=1
-Cload4[32] dbg_dly[32] GND 0.1f m=1
-Cload4[31] dbg_dly[31] GND 0.1f m=1
-Cload4[30] dbg_dly[30] GND 0.1f m=1
-Cload4[29] dbg_dly[29] GND 0.1f m=1
-Cload4[28] dbg_dly[28] GND 0.1f m=1
-Cload4[27] dbg_dly[27] GND 0.1f m=1
-Cload4[26] dbg_dly[26] GND 0.1f m=1
-Cload4[25] dbg_dly[25] GND 0.1f m=1
-Cload4[24] dbg_dly[24] GND 0.1f m=1
-Cload4[23] dbg_dly[23] GND 0.1f m=1
-Cload4[22] dbg_dly[22] GND 0.1f m=1
-Cload4[21] dbg_dly[21] GND 0.1f m=1
-Cload4[20] dbg_dly[20] GND 0.1f m=1
-Cload4[19] dbg_dly[19] GND 0.1f m=1
-Cload4[18] dbg_dly[18] GND 0.1f m=1
-Cload4[17] dbg_dly[17] GND 0.1f m=1
-Cload4[16] dbg_dly[16] GND 0.1f m=1
 Cload4[15] dbg_dly[15] GND 0.1f m=1
 Cload4[14] dbg_dly[14] GND 0.1f m=1
 Cload4[13] dbg_dly[13] GND 0.1f m=1
@@ -236,54 +67,6 @@ Cload4[3] dbg_dly[3] GND 0.1f m=1
 Cload4[2] dbg_dly[2] GND 0.1f m=1
 Cload4[1] dbg_dly[1] GND 0.1f m=1
 Cload4[0] dbg_dly[0] GND 0.1f m=1
-.save v(dbg_dly[63])
-.save v(dbg_dly[62])
-.save v(dbg_dly[61])
-.save v(dbg_dly[60])
-.save v(dbg_dly[59])
-.save v(dbg_dly[58])
-.save v(dbg_dly[57])
-.save v(dbg_dly[56])
-.save v(dbg_dly[55])
-.save v(dbg_dly[54])
-.save v(dbg_dly[53])
-.save v(dbg_dly[52])
-.save v(dbg_dly[51])
-.save v(dbg_dly[50])
-.save v(dbg_dly[49])
-.save v(dbg_dly[48])
-.save v(dbg_dly[47])
-.save v(dbg_dly[46])
-.save v(dbg_dly[45])
-.save v(dbg_dly[44])
-.save v(dbg_dly[43])
-.save v(dbg_dly[42])
-.save v(dbg_dly[41])
-.save v(dbg_dly[40])
-.save v(dbg_dly[39])
-.save v(dbg_dly[38])
-.save v(dbg_dly[37])
-.save v(dbg_dly[36])
-.save v(dbg_dly[35])
-.save v(dbg_dly[34])
-.save v(dbg_dly[33])
-.save v(dbg_dly[32])
-.save v(dbg_dly[31])
-.save v(dbg_dly[30])
-.save v(dbg_dly[29])
-.save v(dbg_dly[28])
-.save v(dbg_dly[27])
-.save v(dbg_dly[26])
-.save v(dbg_dly[25])
-.save v(dbg_dly[24])
-.save v(dbg_dly[23])
-.save v(dbg_dly[22])
-.save v(dbg_dly[21])
-.save v(dbg_dly[20])
-.save v(dbg_dly[19])
-.save v(dbg_dly[18])
-.save v(dbg_dly[17])
-.save v(dbg_dly[16])
 .save v(dbg_dly[15])
 .save v(dbg_dly[14])
 .save v(dbg_dly[13])
@@ -300,11 +83,6 @@ Cload4[0] dbg_dly[0] GND 0.1f m=1
 .save v(dbg_dly[2])
 .save v(dbg_dly[1])
 .save v(dbg_dly[0])
-.save v(dbg_ctr[7])
-.save v(dbg_ctr[6])
-.save v(dbg_ctr[5])
-.save v(dbg_ctr[4])
-.save v(dbg_ctr[3])
 .save v(dbg_ctr[2])
 .save v(dbg_ctr[1])
 .save v(dbg_ctr[0])
