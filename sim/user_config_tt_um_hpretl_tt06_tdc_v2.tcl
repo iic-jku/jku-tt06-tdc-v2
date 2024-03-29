@@ -1,9 +1,7 @@
 # Set design name
-#set ::env(DESIGN_NAME) "tt_um_hpretl_tt06_tdc_v2"
-set ::env(DESIGN_NAME) "tdc_ring"
+set ::env(DESIGN_NAME) "tt_um_hpretl_tt06_tdc_v2"
 # Set Verilog source files
-#set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/tt_um_hpretl_tt06_tdc_v2.v]
-set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/tdc_ring.v]
+set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/tt_um_hpretl_tt06_tdc_v2.v]
 # Interpret instantiated SKY130-Standardcells as blackbox
 set ::env(SYNTH_READ_BLACKBOX_LIB) 1
 # Rexeg to flag nets where buffers are not allowed (analog signals)

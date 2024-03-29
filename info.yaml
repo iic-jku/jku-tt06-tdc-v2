@@ -3,7 +3,7 @@ project:
   title:        "Synthesized Time-to-Digital Converter (TDC) v2"
   author:       "Harald Pretl"
   discord:      "hpretl"
-  description:  "Synthesized TDC based on an interleaved delay line"
+  description:  "Synthesized TDC based on two Vernier delay rings"
   language:     "Verilog"
   clock_hz:     50000000 # Clock frequency in Hz (or 0 if not applicable)
 
@@ -21,24 +21,24 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "Start signal of TDC (stop signal is clk)"
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
+  ui[0]: "Start signal of TDC"
+  ui[1]: "Stop signal of the TDC"
+  ui[2]: "Select result of ring for output"
+  ui[3]: "output select (LSB)"
   ui[4]: "output select"
   ui[5]: "output select"
   ui[6]: "output select"
-  ui[7]: "output select"
+  ui[7]: "output select (MSB)"
 
   # Outputs
-  uo[0]: "Result LSB"
+  uo[0]: "Result (LSB)"
   uo[1]: "Result"
   uo[2]: "Result"
   uo[3]: "Result"
   uo[4]: "Result"
   uo[5]: "Result"
   uo[6]: "Result"
-  uo[7]: "Result MSB"
+  uo[7]: "Result (MSB)"
 
   # Bidirectional pins
   uio[0]: ""

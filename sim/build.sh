@@ -2,8 +2,8 @@
 # Copyright (c) 2024 Harald Pretl, IIC@JKU
 # SPDX-License-Identifier: Apache-2.0
 
-#MODULE=tt_um_hpretl_tt06_tdc_v2
-MODULE=tdc_ring
+MODULE=tt_um_hpretl_tt06_tdc_v2
+#MODULE=tdc_ring
 
 [ -f $MODULE.mag ] && rm $MODULE.mag
 [ -f $MODULE.pex.spice ] && rm $MODULE.pex.spice

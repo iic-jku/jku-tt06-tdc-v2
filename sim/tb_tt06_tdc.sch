@@ -13,8 +13,8 @@ ypos2=2
 divy=10
 subdivy=1
 unity=1
-x1=0
-x2=6e-07
+x1=5.3743909e-07
+x2=5.4095191e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -33,7 +33,7 @@ rainbow=0
 
 
 
-hilight_wave=11
+hilight_wave=3
 color="7 17 6 9 10 11 12 13 8"
 node="start
 stop
@@ -52,8 +52,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=0
-x2=6e-07
+x1=5.3743909e-07
+x2=5.4095191e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -117,8 +117,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=0
-x2=6e-07
+x1=5.3743909e-07
+x2=5.4095191e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -131,26 +131,32 @@ logx=0
 logy=0
 }
 B 2 2040 -1800 2840 -1400 {flags=graph
-y1=0
+y1=-0.098
 y2=2
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=0
-x2=6e-07
+x1=5.3743909e-07
+x2=5.4095191e-07
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node=dbg_dly[1]
-color=13
+node="dbg_dly[1]
+dbg_dly[2]
+dbg_dly[3]
+dbg_dly[4]
+dbg_dly[0]
+dbg_dly[5]
+dbg_dly[6]"
+color="13 13 13 13 13 13 13"
 dataset=-1
 unitx=1
 logx=0
 logy=0
-}
+hilight_wave=0}
 B 2 2040 -2250 2840 -1850 {flags=graph
 y1=0
 y2=2
@@ -159,19 +165,119 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=0
-x2=6e-07
+x1=5.3743909e-07
+x2=5.4095191e-07
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node=dbg_dly[2]
+
+
+dataset=-1
+unitx=1
+logx=0
+logy=0
+color="13 13 13 13 13 13 13"
+node="dbg_dly[13]
+dbg_dly[12]
+dbg_dly[11]
+dbg_dly[10]
+dbg_dly[9]
+dbg_dly[8]
+dbg_dly[7]"}
+B 2 2040 -2690 2840 -2290 {flags=graph
+y1=0
+y2=2
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=5.3743909e-07
+x2=5.4095191e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+node=dbg_dly[8]
 color=13
 dataset=-1
 unitx=1
 logx=0
 logy=0
 }
+B 2 2040 -3130 2840 -2730 {flags=graph
+y1=0
+y2=2
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=5.3743909e-07
+x2=5.4095191e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+node=dbg_dly[14]
+color=13
+dataset=-1
+unitx=1
+logx=0
+logy=0
+}
+B 2 2040 -3580 2840 -3180 {flags=graph
+y1=0
+y2=2
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=5.3743909e-07
+x2=5.4095191e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+node=dbg_dly[15]
+color=13
+dataset=-1
+unitx=1
+logx=0
+logy=0
+}
+B 2 410 -2580 1810 -2060 {flags=graph
+y1=0
+y2=2
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=5.3743909e-07
+x2=5.4095191e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+
+
+dataset=-1
+unitx=1
+logx=0
+logy=0
+digital=1
+
+
+sim_type=tran
+color="9 9 9 13 13"
+node="res_ctr[0]
+res_ctr[1]
+res_ctr[2]
+start
+stop"}
 N 340 -140 340 -120 {
 lab=GND}
 N 1330 -360 1330 -340 {
@@ -224,12 +330,6 @@ N 1510 -500 2280 -500 {
 lab=dbg_stop}
 N 2280 -500 2280 -340 {
 lab=dbg_stop}
-N 2380 -280 2380 -240 {
-lab=GND}
-N 1510 -520 2380 -520 {
-lab=dbg_start}
-N 2380 -520 2380 -340 {
-lab=dbg_start}
 C {devices/title.sym} 160 -30 0 0 {name=l1 author="Harald Pretl, IIC @ JKU"}
 C {devices/vdd.sym} 340 -220 0 0 {name=l2 lab=VDD}
 C {devices/gnd.sym} 340 -120 0 0 {name=l3 lab=GND}
@@ -313,11 +413,5 @@ C {devices/capa.sym} 2280 -310 0 0 {name=Cload5
 m=1
 value=0.1f}
 C {devices/gnd.sym} 2280 -240 0 0 {name=l18 lab=GND}
-C {devices/capa.sym} 2380 -310 0 0 {name=Cload1
-m=1
-value=0.1f}
-C {devices/gnd.sym} 2380 -240 0 0 {name=l19 lab=GND}
 C {devices/lab_wire.sym} 1540 -500 0 1 {name=l20 sig_type=std_logic lab=dbg_stop}
-C {devices/lab_wire.sym} 1540 -520 0 1 {name=l21 sig_type=std_logic lab=dbg_start}
 C {devices/spice_probe.sym} 2280 -380 0 0 {name=p8 attrs=""}
-C {devices/spice_probe.sym} 2380 -380 0 0 {name=p9 attrs=""}

@@ -19,7 +19,6 @@ L 4 0 -160 340 -160 {}
 L 4 0 -60 0 -0 {}
 L 4 340 -60 340 0 {}
 L 4 340 -20 360 -20 {}
-L 4 340 -140 360 -140 {}
 L 4 340 -120 360 -120 {}
 L 4 340 -100 360 -100 {}
 L 4 340 -80 360 -80 {}
@@ -31,10 +30,9 @@ B 5 -22.5 -42.5 -17.5 -37.5 {name=i_start dir=in sim_pinnumber=10}
 B 5 -22.5 -22.5 -17.5 -17.5 {name=i_stop dir=in sim_pinnumber=11}
 B 5 357.5 -42.5 362.5 -37.5 {name=o_result_ring[15:0] dir=out sim_pinnumber=18}
 B 5 357.5 -22.5 362.5 -17.5 {name=o_result_ctr[2:0] dir=out sim_pinnumber=18}
-B 5 357.5 -142.5 362.5 -137.5 {name=dbg_start_pulse dir=out sim_pinnumber=18}
-B 5 357.5 -122.5 362.5 -117.5 {name=dbg_delay_stop dir=out sim_pinnumber=18}
+B 5 357.5 -122.5 362.5 -117.5 {name=dbg_reset dir=out sim_pinnumber=18}
 B 5 357.5 -102.5 362.5 -97.5 {name=dbg_ring_ctr[2:0] dir=out sim_pinnumber=18}
-B 5 357.5 -82.5 362.5 -77.5 {name=dbg_dly_sig[15:0] dir=out sim_pinnumber=18}
+B 5 357.5 -82.5 362.5 -77.5 {name=dbg_ring_sig[15:0] dir=out sim_pinnumber=18}
 B 5 177.5 -182.5 182.5 -177.5 {name=VPWR dir=inout sim_pinnumber=44}
 B 5 177.5 17.5 182.5 22.5 {name=VGND dir=inout sim_pinnumber=45}
 T {@symname} 230 4 0 0 0.3 0.3 {}
@@ -45,7 +43,6 @@ T {i_start} 5 -44 0 0 0.2 0.2 {}
 T {i_stop} 5 -24 0 0 0.2 0.2 {}
 T {o_result_ring[15:0]} 335 -44 0 1 0.2 0.2 {}
 T {o_result_ctr[2:0]} 335 -24 0 1 0.2 0.2 {}
-T {dbg_start_pulse} 335 -144 0 1 0.2 0.2 {}
-T {dbg_delay_stop} 335 -124 0 1 0.2 0.2 {}
+T {dbg_reset} 335 -124 0 1 0.2 0.2 {}
 T {dbg_ring_ctr[2:0]} 335 -104 0 1 0.2 0.2 {}
-T {dbg_dly_sig[15:0]} 335 -84 0 1 0.2 0.2 {}
+T {dbg_ring_sig[15:0]} 335 -84 0 1 0.2 0.2 {}

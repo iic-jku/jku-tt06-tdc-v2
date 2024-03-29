@@ -4,8 +4,8 @@
 
 ## Copyright 2024 by Harald Pretl, Institute for Integrated Circuits, Johannes Kepler University, Linz, Austria
 
-A TDC is implemented in Verilog and synthesized, with a configurable delay length, and based on an interleaved inverter ring.
+A TDC is implemented in Verilog and synthesized, with a configurable delay length, and based on two Vernier wavefront delay rings. Based on analog simulation, the time resolution (typical process, room temperature) is on the order of 6ps.
 
-The result of the delay line capture is output directly, without any bubble correction or coding.
+(To put this into perspective: Light travels ca. 1.8mm in 6ps).
 
-This implementation shall allow to study the bubble signatures which are happening, and will allow to develop a proper bubble correction logic. In addition, the DNL and INL of the TDC can be quantified.
+The result of the delay line capture of both rings is output directly, without any bubble correction or coding, requiring external post-processing of the result.
