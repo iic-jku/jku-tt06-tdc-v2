@@ -2,7 +2,7 @@
 **.subckt tb_tt06_tdc
 VSTART start GND 0 pwl(0 0 500n 0 500.1n 1.8)
 .save v(start)
-VSTOP stop GND 0 pwl(0 0 100n 1.8 200n 1.8 200.1n 0 508n 0 508.1n 1.8)
+VSTOP stop GND 0 pwl(0 0 100n 1.8 200n 1.8 200.1n 0 540n 0 540.1n 1.8)
 .save v(stop)
 Cload1[15] res_ring[15] GND 10f m=1
 Cload1[14] res_ring[14] GND 10f m=1
@@ -47,7 +47,7 @@ Cload2[0] res_ctr[0] GND 10f m=1
 x1 dbg_stop dbg_dly[0] dbg_dly[11] dbg_dly[13] dbg_dly[2] dbg_dly[4] dbg_dly[5] dbg_dly[6] dbg_dly[7] dbg_dly[8] dbg_dly[9]
 + dbg_ctr[0] dbg_ctr[1] dbg_ctr[2] start stop res_ctr[0] res_ctr[2] res_ring[0] res_ring[10] res_ring[12] res_ring[13] res_ring[14]
 + res_ring[15] res_ring[2] res_ring[5] res_ring[8] res_ring[7] res_ring[4] res_ring[1] dbg_dly[10] dbg_dly[15] res_ring[9] res_ring[6]
-+ res_ring[11] res_ctr[1] res_ring[3] dbg_dly[12] dbg_dly[14] dbg_dly[1] dbg_dly[3] dbg_start VDD GND tdc_ring
++ res_ring[11] res_ctr[1] res_ring[3] dbg_dly[12] dbg_dly[14] dbg_dly[1] dbg_dly[3] dbg_start GND VDD tdc_ring
 Cload3[2] dbg_ctr[2] GND 0.1f m=1
 Cload3[1] dbg_ctr[1] GND 0.1f m=1
 Cload3[0] dbg_ctr[0] GND 0.1f m=1

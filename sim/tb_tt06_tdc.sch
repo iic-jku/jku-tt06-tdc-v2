@@ -6,11 +6,11 @@ V {}
 S {}
 E {}
 B 2 420 -1400 1820 -900 {flags=graph
-y1=0
-y2=1.8
+y1=-0.07
+y2=1.9
 ypos1=0
 ypos2=2
-divy=5
+divy=10
 subdivy=1
 unity=1
 x1=0
@@ -33,8 +33,8 @@ rainbow=0
 
 
 
-hilight_wave=6
-color="7 8 6 9 10 11 12 13"
+hilight_wave=11
+color="7 17 6 9 10 11 12 13 8"
 node="start
 stop
 dbg_dly[0]
@@ -42,7 +42,8 @@ dbg_dly[1]
 dbg_dly[2]
 dbg_dly[3]
 dbg_dly[4]
-dbg_dly[5]"}
+dbg_dly[5]
+dbg_dly[15]"}
 B 2 420 -1980 1820 -1460 {flags=graph
 y1=0
 y2=2
@@ -260,7 +261,7 @@ C {devices/vdd.sym} 1330 -600 0 0 {name=l9 lab=VDD}
 C {devices/vsource.sym} 640 -350 0 0 {name=VSTART value="0 pwl(0 0 500n 0 500.1n 1.8)"}
 C {devices/gnd.sym} 640 -310 0 0 {name=l10 lab=GND}
 C {devices/spice_probe.sym} 640 -420 0 0 {name=p1 attrs=""}
-C {devices/vsource.sym} 840 -340 0 0 {name=VSTOP value="0 pwl(0 0 100n 1.8 200n 1.8 200.1n 0 508n 0 508.1n 1.8)"}
+C {devices/vsource.sym} 840 -340 0 0 {name=VSTOP value="0 pwl(0 0 100n 1.8 200n 1.8 200.1n 0 540n 0 540.1n 1.8)"}
 C {devices/gnd.sym} 840 -300 0 0 {name=l13 lab=GND}
 C {devices/spice_probe.sym} 840 -400 0 0 {name=p2 attrs=""}
 C {devices/lab_wire.sym} 900 -400 0 1 {name=l14 sig_type=std_logic lab=stop}

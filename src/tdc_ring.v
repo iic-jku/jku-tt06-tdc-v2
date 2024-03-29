@@ -53,7 +53,7 @@ localparam N_STOP_DEL = 3;
     // around the ring
 
     (* keep *) wire [N_START_DEL:0] w_dly_strt_ana_;
-    (* keep *) wire w_strt_pulse;
+    (* keep *) wire w_strt_pulse, w_strt_pulse_n;
 
     assign w_dly_strt_ana_[0] = i_start;
 
@@ -69,6 +69,7 @@ localparam N_STOP_DEL = 3;
     endgenerate
 
     assign w_strt_pulse = i_start & ~w_dly_strt_ana_[N_START_DEL];
+    assign w_strt_pulse_n = ~w_strt_pulse;
 
 
     // GENERATION OF DELAYED STOP SIGNAL
@@ -77,7 +78,7 @@ localparam N_STOP_DEL = 3;
     // a delayed stop allows time to securely sample the ring state into its FF
 
     (* keep *) wire [N_STOP_DEL:0] w_dly_stop_ana_;
-    (* keep *) wire w_dly_stop_n;
+    (* keep *) wire w_dly_stop_n, w_dly_stop;
 
     assign w_dly_stop_ana_[0] = i_stop;
     
@@ -92,36 +93,62 @@ localparam N_STOP_DEL = 3;
     endgenerate
     
     assign w_dly_stop_n = ~w_dly_stop_ana_[N_STOP_DEL];
+    assign w_dly_stop = ~w_dly_stop_n;
 
 
     // GENERATION OF DELAY RING
     // ------------------------
 
     /* verilator lint_off MULTIDRIVEN */
-    (* keep *) wire [N_DELAY-1:0] w_dly_sig_ana_;
-    (* keep *) wire [N_DELAY-1:0] w_dly_sig_n_ana_;
+    // ring 1:
+    (* keep *) wire [N_DELAY-1:0] w_dly_sig1_ana_;
+    (* keep *) wire [N_DELAY-1:0] w_dly_sig1_n_ana_;
+    // ring 2:
+    (* keep *) wire [N_DELAY-1:0] w_dly_sig2_ana_;
+    (* keep *) wire [N_DELAY-1:0] w_dly_sig2_n_ana_;
     /* verilator lint_on MULTIDRIVEN */
 
 `ifndef SIM 
     // instantiate first stage 0 (different because using a NOR)
     // on the NOR, input A is the fast one
-    (* keep *) sky130_fd_sc_hd__nor2_2 dly_stg1 (.A(w_dly_sig_ana_[0]), .B(w_strt_pulse), .Y(w_dly_sig_n_ana_[0]));
-    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg2 (.A(w_dly_sig_n_ana_[0]), .Y(w_dly_sig_ana_[1]));
+    // on the NAND, input B is the fast one
+    // ring 1:
+    (* keep *) sky130_fd_sc_hd__nor2_2 dly_stg01 (.A(w_dly_sig1_ana_[0]), .B(w_strt_pulse), .Y(w_dly_sig1_n_ana_[0]));
+    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg02 (.A(w_dly_sig1_n_ana_[0]), .Y(w_dly_sig1_ana_[1]));
+    // ring 2:
+    (* keep *) sky130_fd_sc_hd__nand2_2 dly_stg03 (.B(w_dly_sig2_ana_[0]), .A(w_strt_pulse_n), .Y(w_dly_sig2_n_ana_[0]));
+    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg04 (.A(w_dly_sig2_n_ana_[0]), .Y(w_dly_sig2_ana_[1]));
 
     // generating the middle part of the ring, stage 1 to N_DELAY-2
     generate
         for (i=1; i<N_DELAY-1; i=i+1) begin : g_dly_chain
-        // on the NAND, input B is the fast one
-            (* keep *) sky130_fd_sc_hd__nand2_1 dly_stg3 (.B(w_dly_sig_ana_[i]), .A(w_dly_stop_n), .Y(w_dly_sig_n_ana_[i]));
-            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg4 (.A(w_dly_sig_n_ana_[i]), .Y(w_dly_sig_ana_[i+1]));
+            // ring 1:
+            (* keep *) sky130_fd_sc_hd__nand2_1 dly_stg05 (.B(w_dly_sig1_ana_[i]), .A(w_dly_stop_n), .Y(w_dly_sig1_n_ana_[i]));
+            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg06 (.A(w_dly_sig1_n_ana_[i]), .Y(w_dly_sig1_ana_[i+1]));
+            // ring 2:
+            (* keep *) sky130_fd_sc_hd__nor2_1 dly_stg07 (.A(w_dly_sig2_ana_[i]), .B(w_dly_stop), .Y(w_dly_sig2_n_ana_[i]));
+            (* keep *) sky130_fd_sc_hd__inv_2 dly_stg08 (.A(w_dly_sig2_n_ana_[i]), .Y(w_dly_sig2_ana_[i+1]));
         end
 
     // instantiate the last stage N_DELAY-1
-    (* keep *) sky130_fd_sc_hd__nand2_1 dly_stg5 (.B(w_dly_sig_ana_[N_DELAY-1]), .A(w_dly_stop_n), .Y(w_dly_sig_n_ana_[N_DELAY-1]));
-    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg6 (.A(w_dly_sig_n_ana_[N_DELAY-1]), .Y(w_dly_sig_ana_[0])); 
-
+    // ring 1:
+    (* keep *) sky130_fd_sc_hd__nand2_1 dly_stg09 (.B(w_dly_sig1_ana_[N_DELAY-1]), .A(w_dly_stop_n), .Y(w_dly_sig1_n_ana_[N_DELAY-1]));
+    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg10 (.A(w_dly_sig1_n_ana_[N_DELAY-1]), .Y(w_dly_sig1_ana_[0])); 
+    // ring 2:
+    (* keep *) sky130_fd_sc_hd__nor2_1 dly_stg11 (.A(w_dly_sig2_ana_[N_DELAY-1]), .B(w_dly_stop), .Y(w_dly_sig2_n_ana_[N_DELAY-1]));
+    (* keep *) sky130_fd_sc_hd__inv_2 dly_stg12 (.A(w_dly_sig2_n_ana_[N_DELAY-1]), .Y(w_dly_sig2_ana_[0])); 
     endgenerate
+
+    // generate the cross-coupling between ring 1 and ring 2
+    generate
+        for (i=1; i<N_DELAY-1; i=i+1) begin : g_dly_chain_cross
+            //(* keep *) sky130_fd_sc_hd__inv_1 inv1 (.A(w_dly_sig1_ana_[i]), .Y(w_dly_sig2_ana_[i])); 
+            //(* keep *) sky130_fd_sc_hd__inv_1 inv2 (.A(w_dly_sig2_ana_[i]), .Y(w_dly_sig1_ana_[i])); 
+        end
+    endgenerate
+
 `endif
+
 
     // GENERATION OF RING COUNTER
     // --------------------------
@@ -130,7 +157,7 @@ localparam N_STOP_DEL = 3;
     wire w_ring_start;
     wire w_ring_ctr_clk;
     
-    assign w_ring_start = w_dly_sig_ana_[0];
+    assign w_ring_start = w_dly_sig1_ana_[0];
     assign w_ring_ctr_clk = w_ring_start | i_start;
 
     always @(posedge w_ring_ctr_clk) begin
@@ -150,7 +177,7 @@ localparam N_STOP_DEL = 3;
     // on a rising edge on `stop` we sample the current state of the inverter chain into an
     // equal amount of registers, and the current counter state as well
     always @(posedge i_stop) begin
-        r_dly_store_ring <= w_dly_sig_ana_[N_DELAY-1:0];
+        r_dly_store_ring <= w_dly_sig1_ana_[N_DELAY-1:0];
         r_dly_store_ctr <= r_ring_ctr;
     end
 
@@ -165,7 +192,7 @@ localparam N_STOP_DEL = 3;
     assign dbg_start_pulse = w_strt_pulse;
     assign dbg_delay_stop = w_dly_stop_n;
     assign dbg_ring_ctr = r_ring_ctr;
-    assign dbg_dly_sig = w_dly_sig_ana_;
+    assign dbg_dly_sig = w_dly_sig1_ana_;
 `endif
 
 endmodule // tdc_ring
